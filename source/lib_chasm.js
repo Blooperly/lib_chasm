@@ -1,7 +1,7 @@
 // Library Info
 var _CHASM_VERSION_MAJOR = 0;
 var _CHASM_VERSION_MINOR = 0;
-var _CHASM_VERSION_BUILD = 12;
+var _CHASM_VERSION_BUILD = 27;
 
 // Resource Module
 	// Chasm Resources are the primary objects for storing player inventory and statistics. Resources are an
@@ -23,10 +23,13 @@ class chasm_resource {
 
 	// Add resource
 	add(i) {
-		this.current += i;
-		this.alltime += i;
-
-		return true;
+		if (this.unlocked) {
+			this.current += i;
+			this.alltime += i;
+			return true;
+		}
+		
+		return false;
 	}
 
 	// Spend resource

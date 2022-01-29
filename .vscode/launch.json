@@ -1,0 +1,12 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "pwa-chrome",
+			"request": "launch",
+			"name": "lib_chasm",
+			"preLaunchTask": "lib_chasm_build",
+			"file": "${workspaceFolder}/index.html"
+		}
+	]
+}
