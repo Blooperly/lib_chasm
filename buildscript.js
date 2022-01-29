@@ -31,22 +31,4 @@ library = library.replace(/const _CHASM_BUILD_TIME.*;/, "const _CHASM_BUILD_TIME
 fs.writeFileSync(library_file, library);
 console.log("\t+ library info loaded");
 
-// Launch web server
-//const host = "localhost";
-//const port = 8000;
-//var html_file = "./index.html";
-//
-//const requestListener = function (req, res) {
-//	var serving = fs.readFileSync(html_file, "utf-8");
-//    res.setHeader("Content-Type", "text/html");
-//	res.writeHead(200);
-//	res.end(serving);
-//};
-//
-//const server = http.createServer(requestListener);
-//server.listen(port, host, () => {
-//	console.log("\t+ server: http://" + host + ":" + port);
-//});
-
 console.log("\t+ build complete");
-

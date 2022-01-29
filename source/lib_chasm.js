@@ -1,8 +1,8 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
 const _CHASM_VERSION_MAJOR = 0;
 const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 34;
-const _CHASM_BUILD_TIME = new Date(1643419467941);
+const _CHASM_VERSION_BUILD = 39;
+const _CHASM_BUILD_TIME = new Date(1643421141479);
 
 // Resource Module
 	// Chasm Resources are the primary objects for storing player inventory and statistics. Resources are an
@@ -49,9 +49,9 @@ class chasm_resource {
 	// Chasm Gates are 
 
 // Task Module
-	// Chasm Tasks are state-driven actions that a player can engage in. Tasks are gathered into "Task Stacks",
-	// which are groups of tasks that know each other's states. This can be used to implement mutually-exclusive
-	// task groups, task flows, and compounding tasks.
+	// Chasm Tasks are state-driven actions. Tasks are gathered into "Task Stacks", which are groups of tasks
+	//that know each other's states. This can be used to implement mutually-exclusive task groups, task flows,
+	// and compounding tasks.
 class chasm_task {
 	// Task Info
 	name = "";
