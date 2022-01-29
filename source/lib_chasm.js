@@ -1,7 +1,8 @@
-// Library Info
-var _CHASM_VERSION_MAJOR = 0;
-var _CHASM_VERSION_MINOR = 0;
-var _CHASM_VERSION_BUILD = 27;
+// Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
+const _CHASM_VERSION_MAJOR = 0;
+const _CHASM_VERSION_MINOR = 0;
+const _CHASM_VERSION_BUILD = 34;
+const _CHASM_BUILD_TIME = new Date(1643419467941);
 
 // Resource Module
 	// Chasm Resources are the primary objects for storing player inventory and statistics. Resources are an

@@ -23,9 +23,10 @@ console.log("\t+ build incremented");
 var library_file = "./source/lib_chasm.js";
 var library = fs.readFileSync(library_file, "utf-8");
 
-library = library.replace(/var _CHASM_VERSION_MAJOR.*;/, "var _CHASM_VERSION_MAJOR = " + version_major + ";");
-library = library.replace(/var _CHASM_VERSION_MINOR.*;/, "var _CHASM_VERSION_MINOR = " + version_minor + ";");
-library = library.replace(/var _CHASM_VERSION_BUILD.*;/, "var _CHASM_VERSION_BUILD = " + version_build + ";");
+library = library.replace(/const _CHASM_VERSION_MAJOR.*;/, "const _CHASM_VERSION_MAJOR = " + version_major + ";");
+library = library.replace(/const _CHASM_VERSION_MINOR.*;/, "const _CHASM_VERSION_MINOR = " + version_minor + ";");
+library = library.replace(/const _CHASM_VERSION_BUILD.*;/, "const _CHASM_VERSION_BUILD = " + version_build + ";");
+library = library.replace(/const _CHASM_BUILD_TIME.*;/, "const _CHASM_BUILD_TIME = new Date(" + Date.now() + ");");
 
 fs.writeFileSync(library_file, library);
 console.log("\t+ library info loaded");
