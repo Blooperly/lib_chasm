@@ -1,8 +1,8 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
 const _CHASM_VERSION_MAJOR = 0;
 const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 51;
-const _CHASM_BUILD_TIME = new Date(1643539826771);
+const _CHASM_VERSION_BUILD = 58;
+const _CHASM_BUILD_TIME = new Date(1643751705917);
 
 // Resource Module
 	// Chasm Resources are the primary objects for storing player inventory and statistics. Resources are an
@@ -11,7 +11,6 @@ class chasm_resource {
 	// Resource Info
 	name = "";
 	id = 0;
-	unlocked = 0;
 
 	// Resource Stats
 	current = new BigNumber(0);
@@ -19,6 +18,7 @@ class chasm_resource {
 	alltime = new BigNumber(0);
 
 	// Resource Options
+	option_unlocked = false;
 	option_cap = false;
 
 	constructor(name, id) {
@@ -27,10 +27,10 @@ class chasm_resource {
 	}
 
 	// Add resource
-	add(i) {
+	gain(i) {
 		if (this.unlocked) {
-			this.current.add(i);
-			this.alltime.add(i);
+			this.current.plus(i);
+			this.alltime.plus(i);
 			return true;
 		}
 		
@@ -46,6 +46,15 @@ class chasm_resource {
 		else {
 			return false;
 		}
+	}
+
+	// Print resource values. Useful for debugging, less useful for displaying in game.
+	toString() {
+		let string = 						"[" + this.id + "]";
+		string +=							" " + this.name + ":";
+		string +=							" (current = " + this.current + ")";
+		if (this.option_cap) string +=		" (cap = " + this.cap + ")";
+		return string;
 	}
 }
 
