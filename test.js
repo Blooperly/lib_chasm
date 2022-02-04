@@ -8,13 +8,19 @@ stone.option_unlocked = true;
 var iron = new chasm_resource("Iron");
 iron.option_unlocked = true;
 iron.option_cap = true;
-iron.cap = 10;
+iron.cap = BigNumber(10);
 
 function chasm_test() {
 	draw_resources();
+	chasm_timing_init(chasm_tick, 100);
 
-	// Set breakpoint here to catch final state
-	console.log("\tClosing session...\n\n");
+	// Set breakpoint here to catch initialized library
+	console.log("\tlib_chasm initialized\n\n");
+}
+
+function chasm_tick(scalar) {
+	wood.gain(BigNumber(1).times(scalar));
+	draw_resources(); // Move to animation loop later
 }
 
 function draw_resources() {
@@ -25,15 +31,18 @@ function draw_resources() {
 
 function click_wood() {
 	wood.gain(1);
-	draw_resources();
 }
 
 function click_stone() {
 	stone.gain(1);
-	draw_resources();
 }
 
 function click_iron() {
 	iron.gain(1);
-	draw_resources();
+}
+
+function click_iron_expand() {
+	if (iron.spend(10)){
+		iron.cap = iron.cap.plus(10);
+	}
 }

@@ -1,6 +1,5 @@
 // Includes
 var fs = require("fs");
-var http = require("http");
 
 console.log("Building lib_chasm");
 
