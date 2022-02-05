@@ -46,6 +46,7 @@ class chasm_resource {
 	// Resource Options
 	option_unlocked = false;
 	option_cap = false;
+	option_buyable = false;
 
 	// Constructor
 	constructor(name) {
@@ -91,6 +92,16 @@ class chasm_resource {
 		string +=							" (alltime = " + this.alltime.toFixed(0) + ")";
 		return string;
 	}
+}
+
+// Price Module
+// returns price for bnNumber of resources
+function chasm_price_flat(bnCurrent, bnPriceBase, bnPriceChange, bnNumber) {
+	return (bnPriceBase.plus(bnCurrent.times(bnPriceChange)));
+}
+
+function chasm_price_max_buyable_flat() {
+
 }
 
 // Progress Module
