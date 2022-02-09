@@ -5,18 +5,16 @@
 	<meta charset = "utf-8">
 	<script src='https://cdn.jsdelivr.net/npm/bignumber.js@9.0.2/bignumber.min.js'></script>
 	<script type = "text/javascript" src = "./source/lib_chasm.js"></script>
+	<script type = "text/javascript" src = "./source/lib_chasm_timing.js"></script>
 	<script type = "text/javascript" src = "./test.js"></script>
 </head>
 
 <body onload = "chasm_test();">
-	<p><span id = "chasm_resource_wood"></span></p>
-	<button onclick="click_wood()">Chop wood</button>
+	<p><span id = "chasm_resource"></span></p>
+	<button onclick="click_resource()">Gain 1 resource</button>
+	<button onclick="click_resource_expand()">Expand resource cap</button>
 
-	<p><span id = "chasm_resource_stone"></span></p>
-	<button onclick="click_stone()">Haul stone</button>
-	
-	<p><span id = "chasm_resource_iron"></span></p>
-	<button onclick="click_iron()">Mine iron</button>
-	<button onclick="click_iron_expand()">Expand iron</button>
+	<p><span id = "chasm_resource_small"></span></p>
+	<button onclick="click_resource_small()">Gain 1 resource_small</button>
 </body>
 </html>
