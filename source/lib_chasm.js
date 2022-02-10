@@ -1,8 +1,33 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
 const _CHASM_VERSION_MAJOR = 0;
 const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 94;
-const _CHASM_BUILD_TIME = new Date(1644373397895);
+const _CHASM_VERSION_BUILD = 104;
+const _CHASM_BUILD_TIME = new Date(1644488432557);
+
+// BigNumber.js Configuration
+// To do: Make BigNumbers configurable by user
+var chasm_default_big_config = {
+	DECIMAL_PLACES: 10,
+	ROUNDING_MODE: 3,				//ROUND_FLOOR,
+	EXPONENTIAL_AT: 9,
+	RANGE: 500,
+	CRYPTO: false,
+	MODULO_MODE: 1,					//ROUND_DOWN,
+	POW_PRECISION: 10,
+	FORMAT: {
+		prefix: '',
+		decimalSeparator: '.',
+		groupSeparator: ',',
+		groupSize: 3,
+		secondaryGroupSize: 0,
+		fractionGroupSeparator: ' ',
+		fractionGroupSize: 0,
+		suffix: ''
+	},
+	ALPHABET: '0123456789abcdefghijklmnopqrstuvwxyz'
+}
+
+BigNumber.config(chasm_default_big_config);
 
 // Resource Module
 	// Chasm Resources are the primary objects for storing player inventory and statistics. Resources are an
@@ -67,9 +92,9 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 	// 		[id] name: (current) (cap) (alltime)
 	toString() {
 		let string = 						" " + this.name + ":";
-		string +=							" (current = " + this.current.toFixed(0) + ")";
-		if (this.option_cap) string +=		" (cap = " + this.cap.toFixed(0) + ")";
-		string +=							" (alltime = " + this.alltime.toFixed(0) + ")";
+		string +=							" (current = " + this.current.toString(0) + ")";
+		if (this.option_cap) string +=		" (cap = " + this.cap.toString(0) + ")";
+		string +=							" (alltime = " + this.alltime.toString(0) + ")";
 		return string;
 	}
 }
@@ -116,6 +141,7 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 	// Print resource values. Useful for debugging, less useful for displaying in game.
 	// Format:
 	// 		[id] name: (current) (cap) (alltime)
+	// To do: Make small numbers print toString() exponential like BigNumbers?
 	toString() {
 		let string = 						" " + this.name + ":";
 		string +=							" (current = " + this.current.toFixed(0) + ")";
