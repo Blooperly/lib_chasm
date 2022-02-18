@@ -38,6 +38,10 @@ function click_resource_expand() {
 	}
 }
 
+function click_resource_reset() {
+	resource.set(0);
+}
+
 function click_resource_small() {
 	resource_small.gain(1);
 }

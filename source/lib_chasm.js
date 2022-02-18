@@ -1,8 +1,8 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
 const _CHASM_VERSION_MAJOR = 0;
 const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 104;
-const _CHASM_BUILD_TIME = new Date(1644488432557);
+const _CHASM_VERSION_BUILD = 119;
+const _CHASM_BUILD_TIME = new Date(1645141439937);
 
 // BigNumber.js Configuration
 // To do: Make BigNumbers configurable by user
@@ -87,14 +87,20 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 		}
 	}
 
+	// Set resource
+	set(amount) {
+		this.current = BigNumber(amount);
+		return true;
+	}
+
 	// Print resource values. Useful for debugging, less useful for displaying in game.
 	// Format:
 	// 		[id] name: (current) (cap) (alltime)
 	toString() {
 		let string = 						" " + this.name + ":";
-		string +=							" (current = " + this.current.toString(0) + ")";
-		if (this.option_cap) string +=		" (cap = " + this.cap.toString(0) + ")";
-		string +=							" (alltime = " + this.alltime.toString(0) + ")";
+		string +=							" (current = " + this.current.toString() + ")";
+		if (this.option_cap) string +=		" (cap = " + this.cap.toString() + ")";
+		string +=							" (alltime = " + this.alltime.toString() + ")";
 		return string;
 	}
 }
@@ -138,15 +144,21 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 		}
 	}
 
+	// Set resource
+	set(amount) {
+		this.current = amount;
+		return true;
+	}
+
 	// Print resource values. Useful for debugging, less useful for displaying in game.
 	// Format:
 	// 		[id] name: (current) (cap) (alltime)
-	// To do: Make small numbers print toString() exponential like BigNumbers?
+	// To do: Make small numbers print toString() exponential like BigNumbers? Optionally print decimal places?
 	toString() {
 		let string = 						" " + this.name + ":";
-		string +=							" (current = " + this.current.toFixed(0) + ")";
-		if (this.option_cap) string +=		" (cap = " + this.cap.toFixed(0) + ")";
-		string +=							" (alltime = " + this.alltime.toFixed(0) + ")";
+		string +=							" (current = " + Math.floor(this.current) + ")";
+		if (this.option_cap) string +=		" (cap = " + Math.floor(this.cap) + ")";
+		string +=							" (alltime = " + Math.floor(this.alltime) + ")";
 		return string;
 	}
 }

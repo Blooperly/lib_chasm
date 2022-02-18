@@ -11,8 +11,9 @@
 
 <body onload = "chasm_test();">
 	<p><span id = "chasm_resource"></span></p>
-	<button onclick="click_resource()">Gain 1 resource</button>
-	<button onclick="click_resource_expand()">Expand resource cap</button>
+	<button onclick="click_resource()">Gain x resource</button><input type = "text" id = "resource_gain">
+	<button onclick="click_resource_expand()">Enable resource cap at x</button>
+	<button onclick="click_resource_reset()">Set resource to x</button>
 
 	<p><span id = "chasm_resource_small"></span></p>
 	<button onclick="click_resource_small()">Gain 1 resource_small</button>
