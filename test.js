@@ -2,12 +2,10 @@ console.log("Starting lib_chasm debug session:\n\tVersion: " + _CHASM_VERSION_MA
 
 // Resource Initialization
 var resource = new chasm_resource("chasm_resource");
-resource.option_unlocked = true;
 resource.option_cap = true;
 resource.cap = BigNumber(10);
 
 var resource_small = new chasm_resource_small("chasm_resource_small");
-resource_small.option_unlocked = true;
 
 function chasm_test() {
 	draw_resources();
@@ -27,21 +25,39 @@ function draw_resources() {
 	document.getElementById("chasm_resource_small").innerHTML = resource_small.toString();
 }
 
-// Button handling
+// Input handling
+function checkbox_resource_unlocked() {
+	if(document.getElementById("resource_unlocked").checked) resource.option_unlocked = true;
+	else resource.option_unlocked = false;
+}
+
+function checkbox_resource_cap() {
+	if(document.getElementById("resource_cap").checked) resource.option_cap = true;
+	else resource.option_cap = false;
+}
+
 function click_resource() {
-	resource.gain(1);
+	resource.gain(document.getElementById("resource_gain").value);
 }
 
-function click_resource_expand() {
-	if (resource.spend(10)) {
-		resource.cap = resource.cap.plus(10);
-	}
+function click_resource_set() {
+	resource.set(document.getElementById("resource_set").value);
 }
 
-function click_resource_reset() {
-	resource.set(0);
+function checkbox_resource_small_unlocked() {
+	if(document.getElementById("resource_small_unlocked").checked) resource_small.option_unlocked = true;
+	else resource_small.option_unlocked = false;
+}
+
+function checkbox_resource_small_cap() {
+	if(document.getElementById("resource_small_cap").checked) resource_small.option_cap = true;
+	else resource_small.option_cap = false;
 }
 
 function click_resource_small() {
-	resource_small.gain(1);
+	resource_small.gain(document.getElementById("resource_small_gain").value);
+}
+
+function click_resource_small_set() {
+	resource_small.set(document.getElementById("resource_small_set").value);
 }

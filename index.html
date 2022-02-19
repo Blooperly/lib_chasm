@@ -11,11 +11,15 @@
 
 <body onload = "chasm_test();">
 	<p><span id = "chasm_resource"></span></p>
-	<button onclick="click_resource()">Gain x resource</button><input type = "text" id = "resource_gain">
-	<button onclick="click_resource_expand()">Enable resource cap at x</button>
-	<button onclick="click_resource_reset()">Set resource to x</button>
+	<input type = "checkbox" id = "resource_unlocked" onclick = "checkbox_resource_unlocked()">option_unlocked<label for = "resource_unlocked"></label><br>
+	<input type = "checkbox" id = "resource_cap" onclick = "checkbox_resource_cap()">option_cap<label for = "resource_cap"></label><br>
+	<button onclick="click_resource()">Gain x resource</button><input type = "text" id = "resource_gain" style = "margin-left: 5px; width: 35px;"><br>
+	<button onclick="click_resource_set()">Set resource to x</button><input type = "text" id = "resource_set" style = "margin-left: 5px; width: 35px;">
 
 	<p><span id = "chasm_resource_small"></span></p>
-	<button onclick="click_resource_small()">Gain 1 resource_small</button>
+	<input type = "checkbox" id = "resource_small_unlocked" onclick = "checkbox_resource_small_unlocked()">option_unlocked<label for = "resource_small_unlocked"></label><br>
+	<input type = "checkbox" id = "resource_small_cap" onclick = "checkbox_resource_small_cap()">option_cap<label for = "resource_small_cap"></label><br>
+	<button onclick="click_resource_small()">Gain x resource_small</button><input type = "text" id = "resource_small_gain" style = "margin-left: 5px; width: 35px;"><br>
+	<button onclick="click_resource_small_set()">Set resource_small to x</button><input type = "text" id = "resource_small_set" style = "margin-left: 5px; width: 35px;">
 </body>
 </html>

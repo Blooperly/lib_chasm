@@ -1,12 +1,12 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
 const _CHASM_VERSION_MAJOR = 0;
 const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 119;
-const _CHASM_BUILD_TIME = new Date(1645141439937);
+const _CHASM_VERSION_BUILD = 142;
+const _CHASM_BUILD_TIME = new Date(1645235009156);
 
 // BigNumber.js Configuration
 // To do: Make BigNumbers configurable by user
-var chasm_default_big_config = {
+var _CHASM_DEFAULT_BIG_CONFIG = {
 	DECIMAL_PLACES: 10,
 	ROUNDING_MODE: 3,				//ROUND_FLOOR,
 	EXPONENTIAL_AT: 9,
@@ -27,7 +27,7 @@ var chasm_default_big_config = {
 	ALPHABET: '0123456789abcdefghijklmnopqrstuvwxyz'
 }
 
-BigNumber.config(chasm_default_big_config);
+BigNumber.config(_CHASM_DEFAULT_BIG_CONFIG);
 
 // Resource Module
 	// Chasm Resources are the primary objects for storing player inventory and statistics. Resources are an
@@ -40,7 +40,6 @@ class _CHASM_RESOURCE_TEMPLATE {
 	// Resource Options
 	option_unlocked = false;
 	option_cap = false;
-	option_buyable = false;
 
 	// Constructor
 	constructor(name) {
@@ -60,37 +59,51 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 	}
 
 	// Gain resource
-	gain(amount) {
-		if (this.option_unlocked) {
-			this.current = this.current.plus(amount);
-			this.alltime = this.alltime.plus(amount);
+	gain(input) {
+		// Input validation
+		let amount = new BigNumber(input);
+		if (!amount.isNaN()) {
+			// Functionality
+			if (this.option_unlocked) {
+				this.current = this.current.plus(amount);
+				this.alltime = this.alltime.plus(amount);
 
-			if (this.option_cap && this.current.gt(this.cap)) {
-				this.current = BigNumber(this.cap);
+				if (this.option_cap && this.current.gt(this.cap)) {
+					this.current = BigNumber(this.cap);
+				}
+
+				return true;
 			}
-
-			return true;
+			else return false;
 		}
-		else {
-			return false;
-		}
+		else return false;
 	}
 
 	// Spend resource
-	spend(amount) {
-		if (this.current.gte(amount)) {
-			this.current = this.current.minus(amount);
-			return true;
+	spend(input) {
+		// Input validation
+		let amount = new BigNumber(input);
+		if (!amount.isNaN()) {
+			// Functionality
+			if (this.current.gte(amount)) {
+				this.current = this.current.minus(amount);
+				return true;
+			}
+			else return false;
 		}
-		else {
-			return false;
-		}
+		else return false;
 	}
 
 	// Set resource
-	set(amount) {
-		this.current = BigNumber(amount);
-		return true;
+	set(input) {
+		// Input validation
+		let amount = BigNumber(input);
+		if (!amount.isNaN()) {
+			// Functionality
+			this.current = BigNumber(amount);
+			return true;
+		}
+		else return false;
 	}
 
 	// Print resource values. Useful for debugging, less useful for displaying in game.
@@ -117,37 +130,51 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 	}
 
 	// Gain resource
-	gain(amount) {
-		if (this.option_unlocked) {
-			this.current += amount;
-			this.alltime += amount;
+	gain(input) {
+		// Input validation
+		let amount = parseFloat(input);
+		if (!Number.isNaN(amount)) {
+			// Functionality
+			if (this.option_unlocked) {
+				this.current += amount;
+				this.alltime += amount;
 
-			if (this.option_cap && this.current > this.cap) {
-				this.current = this.cap;
+				if (this.option_cap && this.current > this.cap) {
+					this.current = this.cap;
+				}
+
+				return true;
 			}
-
-			return true;
+			else return false;
 		}
-		else {
-			return false;
-		}
+		else return false;
 	}
 
 	// Spend resource
-	spend(amount) {
-		if (this.current >= amount) {
-			this.current -= amount;
-			return true;
+	spend(input) {
+		// Input validation
+		let amount = parseFloat(input);
+		if (!Number.isNaN(amount)) {
+			// Functionality
+			if (this.current >= amount) {
+				this.current -= amount;
+				return true;
+			}
+			else return false;
 		}
-		else {
-			return false;
-		}
+		else return false;
 	}
 
 	// Set resource
-	set(amount) {
-		this.current = amount;
-		return true;
+	set(input) {
+		// Input validation
+		let amount = parseFloat(input);
+		if (!Number.isNaN(amount)) {
+			// Functionality
+			this.current = amount;
+			return true;
+		}
+		else return false;
 	}
 
 	// Print resource values. Useful for debugging, less useful for displaying in game.
