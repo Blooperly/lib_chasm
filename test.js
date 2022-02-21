@@ -2,10 +2,12 @@ console.log("Starting lib_chasm debug session:\n\tVersion: " + _CHASM_VERSION_MA
 
 // Resource Initialization
 var resource = new chasm_resource("chasm_resource");
-resource.option_cap = true;
-resource.cap = BigNumber(10);
+var resource_passive_enabled = false;
+var resource_passive = 0;
 
 var resource_small = new chasm_resource_small("chasm_resource_small");
+var resource_small_passive_enabled = false;
+var resource_small_passive = 0;
 
 function chasm_test() {
 	draw_resources();
@@ -16,7 +18,8 @@ function chasm_test() {
 }
 
 function chasm_tick(scalar) {
-	resource_small.gain(1 * scalar);
+	if (resource_passive_enabled) resource.gain(resource_passive * scalar);
+	if (resource_small_passive_enabled) resource_small.gain(resource_small_passive * scalar);
 	draw_resources(); // Move to animation loop later
 }
 
@@ -34,6 +37,13 @@ function checkbox_resource_unlocked() {
 function checkbox_resource_cap() {
 	if(document.getElementById("resource_cap").checked) resource.option_cap = true;
 	else resource.option_cap = false;
+	resource.setCap(document.getElementById("resource_cap_amount").value);
+}
+
+function checkbox_resource_passive() {
+	if(document.getElementById("resource_passive").checked) resource_passive_enabled = true;
+	else resource_passive_enabled = false;
+	resource_passive = (document.getElementById("resource_passive_amount").value);
 }
 
 function click_resource() {
@@ -52,6 +62,13 @@ function checkbox_resource_small_unlocked() {
 function checkbox_resource_small_cap() {
 	if(document.getElementById("resource_small_cap").checked) resource_small.option_cap = true;
 	else resource_small.option_cap = false;
+	resource_small.setCap(document.getElementById("resource_small_cap_amount").value);
+}
+
+function checkbox_resource_small_passive() {
+	if(document.getElementById("resource_small_passive").checked) resource_small_passive_enabled = true;
+	else resource_small_passive_enabled = false;
+	resource_small_passive = (document.getElementById("resource_small_passive_amount").value);
 }
 
 function click_resource_small() {

@@ -1,8 +1,8 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
 const _CHASM_VERSION_MAJOR = 0;
 const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 142;
-const _CHASM_BUILD_TIME = new Date(1645235009156);
+const _CHASM_VERSION_BUILD = 163;
+const _CHASM_BUILD_TIME = new Date(1645481401788);
 
 // BigNumber.js Configuration
 // To do: Make BigNumbers configurable by user
@@ -65,12 +65,16 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 		if (!amount.isNaN()) {
 			// Functionality
 			if (this.option_unlocked) {
-				this.current = this.current.plus(amount);
-				this.alltime = this.alltime.plus(amount);
 
-				if (this.option_cap && this.current.gt(this.cap)) {
-					this.current = BigNumber(this.cap);
+				if (!this.option_cap) {
+					this.current = this.current.plus(amount);
 				}
+				else if (this.option_cap && this.current.lt(this.cap)) {
+					this.current = this.current.plus(amount);
+					if (this.current.gt(this.cap)) this.current = this.cap;
+				}
+
+				this.alltime = this.alltime.plus(amount);
 
 				return true;
 			}
@@ -100,7 +104,19 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 		let amount = BigNumber(input);
 		if (!amount.isNaN()) {
 			// Functionality
-			this.current = BigNumber(amount);
+			this.current = amount;
+			return true;
+		}
+		else return false;
+	}
+
+	// Set cap
+	setCap(input) {
+		// Input validation
+		let amount = BigNumber(input);
+		if (!amount.isNaN()) {
+			// Functionality
+			this.cap = amount;
 			return true;
 		}
 		else return false;
@@ -111,9 +127,9 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 	// 		[id] name: (current) (cap) (alltime)
 	toString() {
 		let string = 						" " + this.name + ":";
-		string +=							" (current = " + this.current.toString() + ")";
-		if (this.option_cap) string +=		" (cap = " + this.cap.toString() + ")";
-		string +=							" (alltime = " + this.alltime.toString() + ")";
+		string +=							" (current = " + this.current.toFixed(0) + ")";
+		if (this.option_cap) string +=		" (cap = " + this.cap.toFixed(0) + ")";
+		string +=							" (alltime = " + this.alltime.toFixed(0) + ")";
 		return string;
 	}
 }
@@ -136,12 +152,16 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 		if (!Number.isNaN(amount)) {
 			// Functionality
 			if (this.option_unlocked) {
-				this.current += amount;
-				this.alltime += amount;
 
-				if (this.option_cap && this.current > this.cap) {
-					this.current = this.cap;
+				if (!this.option_cap) {
+					this.current += amount;
 				}
+				else if (this.option_cap && this.current < this.cap) {
+					this.current += amount;
+					if (this.current > this.cap) this.current = this.cap;
+				}
+
+				this.alltime += amount;
 
 				return true;
 			}
@@ -172,6 +192,18 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 		if (!Number.isNaN(amount)) {
 			// Functionality
 			this.current = amount;
+			return true;
+		}
+		else return false;
+	}
+
+	// Set cap
+	setCap(input) {
+		// Input validation
+		let amount = parseFloat(input);
+		if (!Number.isNaN(amount)) {
+			// Functionality
+			this.cap = amount;
 			return true;
 		}
 		else return false;

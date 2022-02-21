@@ -10,16 +10,46 @@
 </head>
 
 <body onload = "chasm_test();">
-	<p><span id = "chasm_resource"></span></p>
-	<input type = "checkbox" id = "resource_unlocked" onclick = "checkbox_resource_unlocked()">option_unlocked<label for = "resource_unlocked"></label><br>
-	<input type = "checkbox" id = "resource_cap" onclick = "checkbox_resource_cap()">option_cap<label for = "resource_cap"></label><br>
-	<button onclick="click_resource()">Gain x resource</button><input type = "text" id = "resource_gain" style = "margin-left: 5px; width: 35px;"><br>
-	<button onclick="click_resource_set()">Set resource to x</button><input type = "text" id = "resource_set" style = "margin-left: 5px; width: 35px;">
+	<div style = "border: 1px solid black; margin: 8px 5px 8px 5px; padding: 5px 5px 5px 5px;">
+		<p style = "margin: 0px 0px 0px 0px"><span id = "chasm_resource"></span></p>
+		<div style = "padding-left: 12px">
+			<div style = "padding-top: 4px;">
+				<input type = "checkbox" id = "resource_unlocked" onclick = "checkbox_resource_unlocked()">option_unlocked<label for = "resource_unlocked"></label><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<input type = "checkbox" id = "resource_cap" onclick = "checkbox_resource_cap()">option_cap<label for = "resource_cap"></label><input type = "text" id = "resource_cap_amount" onchange = "checkbox_resource_cap()" style = "margin-left: 5px; width: 35px;"><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<input type = "checkbox" id = "resource_passive" onclick = "checkbox_resource_passive()">passive gain per second<label for = "resource_passive"></label><input type = "text" id = "resource_passive_amount" onchange = "checkbox_resource_passive()" style = "margin-left: 5px; width: 35px;"><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<button onclick="click_resource()">Gain x resource</button><input type = "text" id = "resource_gain" style = "margin-left: 5px; width: 35px;"><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<button onclick="click_resource_set()">Set resource to x</button><input type = "text" id = "resource_set" style = "margin-left: 5px; width: 35px;">
+			</div>
+		</div>
+	</div>
 
-	<p><span id = "chasm_resource_small"></span></p>
-	<input type = "checkbox" id = "resource_small_unlocked" onclick = "checkbox_resource_small_unlocked()">option_unlocked<label for = "resource_small_unlocked"></label><br>
-	<input type = "checkbox" id = "resource_small_cap" onclick = "checkbox_resource_small_cap()">option_cap<label for = "resource_small_cap"></label><br>
-	<button onclick="click_resource_small()">Gain x resource_small</button><input type = "text" id = "resource_small_gain" style = "margin-left: 5px; width: 35px;"><br>
-	<button onclick="click_resource_small_set()">Set resource_small to x</button><input type = "text" id = "resource_small_set" style = "margin-left: 5px; width: 35px;">
+	<div style = "border: 1px solid black; margin: 8px 5px 8px 5px; padding: 5px 5px 5px 5px;">
+		<p style = "margin: 0px 0px 0px 0px"><span id = "chasm_resource_small"></span></p>
+		<div style = "padding-left: 12px">
+			<div style = "padding-top: 4px;">
+				<input type = "checkbox" id = "resource_small_unlocked" onclick = "checkbox_resource_small_unlocked()">option_unlocked<label for = "resource_small_unlocked"></label><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<input type = "checkbox" id = "resource_small_cap" onclick = "checkbox_resource_small_cap()">option_cap<label for = "resource_small_cap"></label><input type = "text" id = "resource_small_cap_amount" onchange = "checkbox_resource_small_cap()" style = "margin-left: 5px; width: 35px;"><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<input type = "checkbox" id = "resource_small_passive" onclick = "checkbox_resource_small_passive()">passive gain per second<label for = "resource_small_passive"></label><input type = "text" id = "resource_small_passive_amount" onchange = "checkbox_resource_small_passive()" style = "margin-left: 5px; width: 35px;"><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<button onclick="click_resource_small()">Gain x resource_small</button><input type = "text" id = "resource_small_gain" style = "margin-left: 5px; width: 35px;"><br>
+			</div>
+			<div style = "padding-top: 4px;">
+				<button onclick="click_resource_small_set()">Set resource_small to x</button><input type = "text" id = "resource_small_set" style = "margin-left: 5px; width: 35px;">
+			</div>
+		</div>
+	</div>
 </body>
 </html>
