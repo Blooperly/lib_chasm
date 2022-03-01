@@ -6,11 +6,16 @@
 	<script src='https://cdn.jsdelivr.net/npm/bignumber.js@9.0.2/bignumber.min.js'></script>
 	<script type = "text/javascript" src = "./source/lib_chasm.js"></script>
 	<script type = "text/javascript" src = "./source/lib_chasm_timing.js"></script>
+	<script type = "text/javascript" src = "./source/lib_chasm_progress.js"></script>
 	<script type = "text/javascript" src = "./test.js"></script>
+
+	<style>
+		p {margin: 0px; padding: 0px;}
+	</style>
 </head>
 
 <body onload = "chasm_test();">
-	<div style = "border: 1px solid black; margin: 8px 5px 8px 5px; padding: 5px 5px 5px 5px;">
+	<div style = "border: 1px solid black; margin: 8px 5px 8px 5px; padding: 12px 12px 12px 12px; display: inline-block">
 		<p style = "margin: 0px 0px 0px 0px"><span id = "chasm_resource"></span></p>
 		<div style = "padding-left: 12px">
 			<div style = "padding-top: 4px;">
@@ -31,7 +36,7 @@
 		</div>
 	</div>
 
-	<div style = "border: 1px solid black; margin: 8px 5px 8px 5px; padding: 5px 5px 5px 5px;">
+	<div style = "border: 1px solid black; margin: 8px 5px 8px 5px; padding: 12px 12px 12px 12px; display: inline-block">
 		<p style = "margin: 0px 0px 0px 0px"><span id = "chasm_resource_small"></span></p>
 		<div style = "padding-left: 12px">
 			<div style = "padding-top: 4px;">
@@ -50,6 +55,18 @@
 				<button onclick="click_resource_small_set()">Set resource_small to x</button><input type = "text" id = "resource_small_set" style = "margin-left: 5px; width: 35px;">
 			</div>
 		</div>
+	</div>
+
+	<div style = "border: 1px solid black; background-color: lightcoral; margin: 8px 5px 8px 5px; padding: 12px 12px 12px 12px; display: inline-block">
+		<p>chasm_gate_1</p>
+	</div>
+
+	<div style = "border: 1px solid black; background-color: lightcoral; margin: 8px 5px 8px 5px; padding: 12px 12px 12px 12px; display: inline-block">
+		<p>chasm_gate_2</p>
+	</div>
+	
+	<div style = "border: 1px solid black; background-color: lightcoral; margin: 8px 5px 8px 5px; padding: 12px 12px 12px 12px; display: inline-block">
+		<p>chasm_gate_3</p>
 	</div>
 </body>
 </html>

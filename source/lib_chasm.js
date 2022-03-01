@@ -1,8 +1,16 @@
 // Library Info - DO NOT MANUALLY EDIT, BUILT BY buildscript.js
-const _CHASM_VERSION_MAJOR = 0;
-const _CHASM_VERSION_MINOR = 0;
-const _CHASM_VERSION_BUILD = 163;
-const _CHASM_BUILD_TIME = new Date(1645481401788);
+var _CHASM_VERSION_MAJOR = 0;
+var _CHASM_VERSION_MINOR = 0;
+var _CHASM_VERSION_BUILD = 167;
+var _CHASM_BUILD_TIME = new Date(1645485663237);
+
+function lib_chasm_version() {
+	return (_CHASM_VERSION_MAJOR + "." + _CHASM_VERSION_MINOR + "." + _CHASM_VERSION_BUILD);
+}
+
+function lib_chasm_build_time() {
+	return _CHASM_BUILD_TIME;
+}
 
 // BigNumber.js Configuration
 // To do: Make BigNumbers configurable by user
@@ -228,9 +236,6 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 function chasm_price_flat(bnCurrent, bnPriceBase, bnPriceChange) {
 	return (bnPriceBase.plus(bnCurrent.times(bnPriceChange)));
 }
-
-// Progress Module
-	// Chasm Gates are state
 
 // Task Module
 	// Chasm Tasks are state-driven actions. Tasks are gathered into "Task Stacks", which are groups of tasks
