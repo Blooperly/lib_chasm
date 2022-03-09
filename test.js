@@ -9,11 +9,6 @@ var resource_small = new chasm_resource_small("chasm_resource_small");
 var resource_small_passive_enabled = false;
 var resource_small_passive = 0;
 
-// Progress Initialization
-var gate_1 = new chasm_gate("chasm_gate_1");
-var gate_2 = new chasm_gate("chasm_gate_2");
-var gate_3 = new chasm_gate("chasm_gate_3");
-
 function chasm_test() {
 	draw_resources();
 

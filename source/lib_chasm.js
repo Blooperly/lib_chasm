@@ -134,7 +134,7 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 	// Format:
 	// 		[id] name: (current) (cap) (alltime)
 	toString() {
-		let string = 						" " + this.name + ":";
+		let string = 						this.name + ":";
 		string +=							" (current = " + this.current.toFixed(0) + ")";
 		if (this.option_cap) string +=		" (cap = " + this.cap.toFixed(0) + ")";
 		string +=							" (alltime = " + this.alltime.toFixed(0) + ")";
@@ -222,7 +222,7 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 	// 		[id] name: (current) (cap) (alltime)
 	// To do: Make small numbers print toString() exponential like BigNumbers? Optionally print decimal places?
 	toString() {
-		let string = 						" " + this.name + ":";
+		let string = 						this.name + ":";
 		string +=							" (current = " + Math.floor(this.current) + ")";
 		if (this.option_cap) string +=		" (cap = " + Math.floor(this.cap) + ")";
 		string +=							" (alltime = " + Math.floor(this.alltime) + ")";

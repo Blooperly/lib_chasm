@@ -34,13 +34,6 @@ library_fill(library);
 fs.writeFileSync(library_file, library);
 console.log("\t+ library info loaded (" + library_file + ")");
 
-// Load Version into lib_chasm_progress.js
-library_file = "./source/lib_chasm_progress.js";
-library = fs.readFileSync(library_file, "utf-8");
-library_fill(library);
-fs.writeFileSync(library_file, library);
-console.log("\t+ library info loaded (" + library_file + ")");
-
 // Load Version into lib_chasm_math.js
 library_file = "./source/lib_chasm_math.js";
 library = fs.readFileSync(library_file, "utf-8");
