@@ -9,20 +9,34 @@ var resource_small = new chasm_resource_small("chasm_resource_small");
 var resource_small_passive_enabled = false;
 var resource_small_passive = 0;
 
+var achievement_1 = false;
+
 function chasm_test() {
 	draw_resources();
 
 	// Timing Initialization
-	chasm_timing_init(chasm_tick, 100);
+	chasm_timing_add_process_to_scheduler(game_tick, 80, 0);
+	chasm_timing_add_process_to_scheduler(achievement_tick, 700, 0);
+	chasm_timing_init(animation_tick);
 
 	// Set breakpoint here to catch initialized library
 	console.log("\tlib_chasm initialized\n\n");
 }
 
-function chasm_tick(scalar) {
+function animation_tick() {
+	draw_resources();
+}
+
+function game_tick(scalar) {
 	if (resource_passive_enabled) resource.gain(resource_passive * scalar);
 	if (resource_small_passive_enabled) resource_small.gain(resource_small_passive * scalar);
-	draw_resources(); // Move to animation loop later
+}
+
+function achievement_tick(scalar) {
+	if (resource.current.gte(100) && achievement_1 == false) {
+		achievement_1 = true;
+		document.getElementById("achievement_1").style.backgroundColor = "green";
+	}
 }
 
 function draw_resources() {
