@@ -63,7 +63,6 @@ function _CHASM_TIMING_MODULE(timestamp) {
 	_CHASM_TIMING_CALLBACK();
 	
 	let time_delta = timestamp - _CHASM_TIMING_LAST_TIMESTAMP;
-	console.log(time_delta);
 	let scalar = 0;
 
 	// Loop through scheduler, running every function which has accrued at least one full tick
