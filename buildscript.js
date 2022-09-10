@@ -41,6 +41,14 @@ library_fill(library);
 fs.writeFileSync(library_file, library);
 console.log("\t+ library info loaded (" + library_file + ")");
 
+// Load Version into lib_chasm_logging.js
+library_file = "./source/lib_chasm_logging.js";
+library = fs.readFileSync(library_file, "utf-8");
+library_fill(library);
+fs.writeFileSync(library_file, library);
+console.log("\t+ library info loaded (" + library_file + ")");
+
+// This is currently broken. Regex issue?
 function library_fill(library) {
 	library = library.replace(/_VERSION_MAJOR.*;/, "_VERSION_MAJOR = " + version_major + ";");
 	library = library.replace(/_VERSION_MINOR.*;/, "_VERSION_MINOR = " + version_minor + ";");
