@@ -13,34 +13,46 @@ class _CHASM_LOG_DIRECTION {
 } var _CHASM_LD = new _CHASM_LOG_DIRECTION();
 
 class lib_chasm_log {
-	div_id;
+	#div_id;
 
-	queue_size;
-	message_queue;
-	queue_head = 1;
-	queue_tail = 0;
+	#queue_size;
+	#message_queue;
+	#color_queue;
+	#queue_head = 1;
+	#queue_tail = 0;
 
-	log_direction;
+	#log_direction;
 
 	constructor(div_id, queue_size, log_direction) {
 		// todo: add input validation
-		this.div_id = div_id;
-		this.queue_size = queue_size;
-		this.message_queue = new Array(queue_size);
-		this.log_direction = log_direction;
+		this.#div_id = div_id;
+		this.#queue_size = queue_size;
+		this.#message_queue = new Array(queue_size);
+		this.#color_queue = new Array(queue_size);
+		this.#log_direction = log_direction;
 	}
 
 	write(string) {
-		this.message_queue[this.queue_head] = string;
-		this.queue_head++;
-		if (this.queue_head == this.queue_size) {
-			this.queue_head = 0;
+		this.#write(string, "");
+	}
+
+	writeColor(string, color) {
+		this.#write(string, color);
+	}
+
+	#write(string, color) {
+		this.#message_queue[this.#queue_head] = string;
+		this.#color_queue[this.#queue_head] = color;
+
+		this.#queue_head++;
+		if (this.#queue_head == this.#queue_size) {
+			this.#queue_head = 0;
 		}
-		if (this.queue_head == this.queue_tail) {
-			this.queue_tail++;
+		if (this.#queue_head == this.#queue_tail) {
+			this.#queue_tail++;
 		}
-		if (this.queue_tail == this.queue_size) {
-			this.queue_tail = 0;
+		if (this.#queue_tail == this.#queue_size) {
+			this.#queue_tail = 0;
 		}
 		this.update();
 	}
@@ -48,16 +60,16 @@ class lib_chasm_log {
 	update() {
 		let out_string = "";
 
-		if (this.log_direction == _CHASM_LD.top) {
-			for (let i = this.queue_head - 1;; i--) {
+		if (this.#log_direction == _CHASM_LD.top) {
+			for (let i = this.#queue_head - 1;; i--) {
 				if (i < 0) {
-					i = this.queue_size - 1;
+					i = this.#queue_size - 1;
 				}
 
-				out_string += "<p>" + this.message_queue[i] + "</p>";
+				out_string += "<p style = 'color: " + this.#color_queue[i] + ";'>" + this.#message_queue[i] + "</p>";
 
-				let tailcheck = this.queue_tail + 1;
-				if (tailcheck == this.queue_size) {
+				let tailcheck = this.#queue_tail + 1;
+				if (tailcheck == this.#queue_size) {
 					tailcheck = 0;
 				}
 
@@ -65,10 +77,10 @@ class lib_chasm_log {
 					break;
 				}
 			}
-		} else if(this.log_direction == _CHASM_LD.bottom) {
+		} else if(this.#log_direction == _CHASM_LD.bottom) {
 
 		}
 
-		document.getElementById(this.div_id).innerHTML = out_string;
+		document.getElementById(this.#div_id).innerHTML = out_string;
 	}
 }
