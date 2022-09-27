@@ -40,6 +40,23 @@ class lib_chasm_log {
 		this.#write(string, color);
 	}
 
+	writeSectionDivider() {
+		this.#message_queue[this.#queue_head] = "<hr>";
+		this.#color_queue[this.#queue_head] = "";
+
+		this.#queue_head++;
+		if (this.#queue_head == this.#queue_size) {
+			this.#queue_head = 0;
+		}
+		if (this.#queue_head == this.#queue_tail) {
+			this.#queue_tail++;
+		}
+		if (this.#queue_tail == this.#queue_size) {
+			this.#queue_tail = 0;
+		}
+		this.update();
+	}
+
 	#write(string, color) {
 		this.#message_queue[this.#queue_head] = string;
 		this.#color_queue[this.#queue_head] = color;
