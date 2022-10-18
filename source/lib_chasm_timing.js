@@ -73,8 +73,11 @@ function _CHASM_TIMING_MODULE(timestamp) {
 
 		// Handle flags and set scalar
 		if (_CHASM_TIMING_SCHEDULER[i].flags & chasm_process_flag_disable_multitick) {
-			_CHASM_TIMING_SCHEDULER[i].tick_accrued = _CHASM_TIMING_SCHEDULER[i].tick_time;
+			if (_CHASM_TIMING_SCHEDULER[i].tick_accrued > _CHASM_TIMING_SCHEDULER[i].tick_time) {
+				_CHASM_TIMING_SCHEDULER[i].tick_accrued = _CHASM_TIMING_SCHEDULER[i].tick_time;
+			}
 		}
+		
 		scalar = _CHASM_TIMING_SCHEDULER[i].tick_time / 1000; 
 
 		// Run process until accrued ticks run out
