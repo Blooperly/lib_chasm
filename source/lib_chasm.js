@@ -237,20 +237,5 @@ function chasm_price_flat(bnCurrent, bnPriceBase, bnPriceChange) {
 	return (bnPriceBase.plus(bnCurrent.times(bnPriceChange)));
 }
 
-// Task Module
-	// Chasm Tasks are state-driven actions. Tasks are gathered into "Task Stacks", which are groups of tasks
-	// that know each other's states. This can be used to implement mutually-exclusive task groups, task flows,
-	// and compounding tasks.
-class chasm_task {
-	// Task Info
-	name = "";
-	id = 0;
-	unlocked = 0;
-
-	constructor(name, id) {
-		this.name
-	}
-}
-
 // Devtools Module
 // Tool for graphing exponential progress in relation to upgrades & time
