@@ -40,3 +40,23 @@ function lib_chasm_merge_save(base_layer, incoming_layer) {
 		}
 	}
 }
+ 
+function lib_chasm_pack_resource(resource) {
+	let packed_object = {};
+	packed_object["option_unlocked"] = resource.option_unlocked;
+	packed_object["option_cap"] = resource.option_cap;
+	packed_object["current"] = resource.current.toString();
+	packed_object["alltime"] = resource.alltime.toString();
+	packed_object["cap"] = resource.cap.toString();
+	return packed_object;
+}
+
+function lib_chasm_unpack_resource(name, packed_object) {
+	let resource = new chasm_resource(name);
+	resource.option_unlocked = packed_object["option_unlocked"];
+	resource.option_cap = packed_object["option_cap"];
+	resource.current = new BigNumber(packed_object["current"]);
+	resource.alltime = new BigNumber(packed_object["alltime"]);
+	resource.cap = new BigNumber(packed_object["cap"]);
+	return resource;
+}
