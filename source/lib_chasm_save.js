@@ -32,8 +32,8 @@ function lib_chasm_load_save(file) {
 function lib_chasm_merge_save(base_layer, incoming_layer) {
 	for (var prop in incoming_layer) {
 		if (base_layer.hasOwnProperty(prop)) {
-			if (typeof base_layer.prop === "object") {
-				lib_chasm_merge_save(prop);
+			if (typeof base_layer[prop] === "object") {
+				lib_chasm_merge_save(base_layer.prop, incoming_layer.prop);
 			} else {
 				base_layer[prop] = incoming_layer[prop];
 			}
