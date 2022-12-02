@@ -15,8 +15,8 @@ function chasm_test() {
 	draw_resources();
 
 	// Timing Initialization
-	chasm_timing_add_process_to_scheduler(game_tick, 80, 0);
-	chasm_timing_add_process_to_scheduler(achievement_tick, 700, 0);
+	chasm_timing_add_task_to_scheduler(game_tick, 80, 0);
+	chasm_timing_add_task_to_scheduler(achievement_tick, 700, 0);
 	chasm_timing_init(animation_tick);
 
 	// Set breakpoint here to catch initialized library

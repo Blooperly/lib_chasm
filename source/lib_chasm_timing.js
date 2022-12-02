@@ -12,14 +12,14 @@ let _CHASM_TIMING_CALLBACK = 0;
 let _CHASM_TIMING_SCHEDULER = new Array();
 let _CHASM_TIMING_LAST_TIMESTAMP = 0;
 
-const chasm_process_flag_disable_multitick = 1 << 0;	// Only run process max once per animation frame, even if multiple ticks have accrued
+const chasm_task_flag_disable_multitick = 1 << 0;	// Only run task max once per animation frame, even if multiple ticks have accrued
 
-class _CHASM_TIMING_PROCESS {
+class _CHASM_TIMING_TASK {
 	function_callback = 0;
 	tick_time = 100;
 	tick_accrued = 0;
 	
-	// Process flags
+	// Task flags
 	flags = 0;
 
 	constructor(function_callback, tick_time, flags) {
@@ -29,20 +29,20 @@ class _CHASM_TIMING_PROCESS {
 	}
 }
 
-function chasm_timing_add_process_to_scheduler(function_callback, tick_time, flags) {
+function chasm_timing_add_task_to_scheduler(function_callback, tick_time, flags) {
 	if (typeof function_callback === "function" && tick_time > 0) {
-		return _CHASM_TIMING_SCHEDULER.push(new _CHASM_TIMING_PROCESS(function_callback, tick_time, flags))
+		return _CHASM_TIMING_SCHEDULER.push(new _CHASM_TIMING_TASK(function_callback, tick_time, flags))
 	}
 
 	return 0;
 }
 
-function chasm_timing_remove_process_from_scheduler() {
+function chasm_timing_remove_task_from_scheduler() {
 	// stub
 	return 0;
 }
 
-function chasm_timing_modify_process_in_scheduler() {
+function chasm_timing_modify_task_in_scheduler() {
 	// stub
 	return 0;
 }
@@ -72,7 +72,7 @@ function _CHASM_TIMING_MODULE(timestamp) {
 		_CHASM_TIMING_SCHEDULER[i].tick_accrued += time_delta;
 
 		// Handle flags and set scalar
-		if (_CHASM_TIMING_SCHEDULER[i].flags & chasm_process_flag_disable_multitick) {
+		if (_CHASM_TIMING_SCHEDULER[i].flags & chasm_task_flag_disable_multitick) {
 			if (_CHASM_TIMING_SCHEDULER[i].tick_accrued > _CHASM_TIMING_SCHEDULER[i].tick_time) {
 				_CHASM_TIMING_SCHEDULER[i].tick_accrued = _CHASM_TIMING_SCHEDULER[i].tick_time;
 			}
@@ -80,7 +80,7 @@ function _CHASM_TIMING_MODULE(timestamp) {
 		
 		scalar = _CHASM_TIMING_SCHEDULER[i].tick_time / 1000; 
 
-		// Run process until accrued ticks run out
+		// Run task until accrued ticks run out
 		while (_CHASM_TIMING_SCHEDULER[i].tick_accrued >= _CHASM_TIMING_SCHEDULER[i].tick_time) {
 			_CHASM_TIMING_SCHEDULER[i].tick_accrued -= _CHASM_TIMING_SCHEDULER[i].tick_time;
 			_CHASM_TIMING_SCHEDULER[i].function_callback(scalar);
