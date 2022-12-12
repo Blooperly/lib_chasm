@@ -40,6 +40,10 @@ function lib_chasm_merge_save(base_layer, incoming_layer) {
 		}
 	}
 }
+
+function lib_chasm_delete_save(file) {
+	localStorage.removeItem(file);
+}
  
 function lib_chasm_pack_resource(resource) {
 	let packed_object = {};
