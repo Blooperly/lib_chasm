@@ -91,6 +91,29 @@ class chasm_resource extends _CHASM_RESOURCE_TEMPLATE {
 		else return false;
 	}
 
+	// Gain resource without adding to alltime
+	gainUntracked(input) {
+		// Input validation
+		let amount = new BigNumber(input);
+		if (!amount.isNaN()) {
+			// Functionality
+			if (this.option_unlocked) {
+
+				if (!this.option_cap) {
+					this.current = this.current.plus(amount);
+				}
+				else if (this.option_cap && this.current.lt(this.cap)) {
+					this.current = this.current.plus(amount);
+					if (this.current.gt(this.cap)) this.current = this.cap;
+				}
+
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
+
 	// Spend resource
 	spend(input) {
 		// Input validation
@@ -170,6 +193,29 @@ class chasm_resource_small extends _CHASM_RESOURCE_TEMPLATE {
 				}
 
 				this.alltime += amount;
+
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
+
+	// Gain resource without adding to alltime
+	gainUntracked(input) {
+		// Input validation
+		let amount = parseFloat(input);
+		if (!Number.isNaN(amount)) {
+			// Functionality
+			if (this.option_unlocked) {
+
+				if (!this.option_cap) {
+					this.current += amount;
+				}
+				else if (this.option_cap && this.current < this.cap) {
+					this.current += amount;
+					if (this.current > this.cap) this.current = this.cap;
+				}
 
 				return true;
 			}
