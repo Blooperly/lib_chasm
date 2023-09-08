@@ -11,3 +11,10 @@ var _CHASM_MATH_BUILD_TIME = new Date(1645485663237);
 function chasm_math_exponential_cost() {
 	return 0;
 }
+
+// Linear growth function: y = mx + b
+// m: slope
+// b: intercept
+function chasm_math_linear_cost(x, m, b) {
+	return (m * x) + b;
+}
