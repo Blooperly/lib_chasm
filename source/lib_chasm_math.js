@@ -7,9 +7,11 @@ var _CHASM_MATH_BUILD_TIME = new Date(1645485663237);
 // Math Module
 	// Useful functions for calculating incremental math
 
-// Exponential growth function: y = x0 (1 + r)^t
-function chasm_math_exponential_cost() {
-	return 0;
+// Exponential growth function: y = cb^x
+// c: initial value at x = 0
+// b: growth factor (every 1x = *b)
+function chasm_math_exponential_cost(x, c, b) {
+	return c * Math.pow(b, x);
 }
 
 // Linear growth function: y = mx + b
